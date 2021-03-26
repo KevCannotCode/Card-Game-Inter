@@ -6,9 +6,13 @@ This project is a card game called Inter. The rules of this game can be found in
 
 This covers most of the rules of the game, lmk if you have questions. I think I’ll just do a demo to make it clearer. 
 BASIC REQUIREMENT
+
 •	52 cards
+
 •	Minimum 2 players and up to as many as you can
+
 PLAYING:
+
 •	Each player receives 5 cards from the deck, and they play one after another. The goal is to be the first to get rid of all cards in hand. The first player who has no remaining card in his hand wins.
 
 •	At start, there will be one card on the pile. Then, players would each put a card on the pile at their turn. You can only put a card on the pile if it either has the same suit or rank as the card on the top of the pile. 
