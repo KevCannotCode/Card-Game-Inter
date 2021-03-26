@@ -1,7 +1,9 @@
 # Card-Game-Inter
 This project is a card game called Inter. The rules of this game can be found in the Rules section bellow.
 
-**rules**
+# Rules
+
+
 This covers most of the rules of the game, lmk if you have questions. I think I’ll just do a demo to make it clearer. 
 BASIC REQUIREMENT
 •	52 cards
