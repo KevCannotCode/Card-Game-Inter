@@ -48,7 +48,7 @@ public class Player {
 	}
 	/**
 	the player will call this method to play multiple cards. It will remove some cards from 
-	the player's hand
+	the player's hand.
 	
 	??Implementation question: In the real game the order matters, but I am not sure if its necessary. 
 	@param
@@ -66,4 +66,17 @@ public class Player {
 		return null;
 	}
 	
+	/**
+	returns the number of cards a player has
+	
+	@param
+		none
+	@precondition
+		
+	@return
+		 the number of cards a player has in hand
+	**/
+	public int numberOfCards() {
+		return 0;
+	}
 }
