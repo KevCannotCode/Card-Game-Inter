@@ -1,7 +1,7 @@
 package cardGameBasic;
 
 import java.util.NoSuchElementException;
-
+//read and copied method heades from math.hws.edu/javanotes/c5/s4.html
 public class Player {
 	Card [] hand;
 	//??IMplementation problem:
@@ -79,4 +79,12 @@ public class Player {
 	public int numberOfCards() {
 		return 0;
 	}
+	
+	public void clearHand();
+	
+	//may come handy
+	public int getCard(int position);
+	// may come handy
+	public void sortBySuit();
+	public void sortByValue();
 }

@@ -64,11 +64,11 @@ public class Deck {
 	@postcondition
 	 	the deck should have 52 unique cards in the deck array
 	@throws
-		NoSuchElementException: this exception should be thrown if one tries to remove
-		a card from an empty deck
+		IllegalStateException: this exception should be thrown if the deck is empty 
 	**/
-	public Card drawACard() {
+	public Card dealCard() {
 		return null;
 	}
 	
+	public boolean isEmpty();
 }
