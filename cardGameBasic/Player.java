@@ -4,6 +4,8 @@ import java.util.NoSuchElementException;
 
 public class Player {
 	Card [] hand;
+	//??IMplementation problem:
+	//should we put it in a game manager class ?
 	boolean win;
 	//THis boolean will let us know when a player is paused
 	//maybe i should write this in the game itself
@@ -63,4 +65,5 @@ public class Player {
 	public Card playACard(Card cardSequence []) {
 		return null;
 	}
+	
 }
