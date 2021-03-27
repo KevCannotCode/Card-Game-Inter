@@ -6,6 +6,7 @@ public class InterGame {
 	//The driver could have a variable that keeps track of how many cards each player should pick once the deck has enough cards.
 	//we could say that the deck is big enough when it has the double of all the cards each player must pick.
 	private int credit;
+	private int penalty;//this keeps track of the number of penalty cards played by the last player
 	private Card pileCard;//this variable will hold the card on the top of the pile
 	private Deck gameDeck;//a deck of 52 cards. 
 	
@@ -91,6 +92,22 @@ public class InterGame {
 	 * * {@link IllegalArgumentException}: this error will occur if p is null
 	 */
 	public void pickCard(Player p) {
+		
+	}
+	
+	/**
+	 * this method will tells if the next player should be penalized or not.
+	 * @return
+	 */
+	public boolean isPenalty() {
+		
+	}
+	/**
+	 * this method will give the appropriate amount of cards to the player. It will
+	 * pileCard to check how many cards to give. 
+	 * @return
+	 */
+	public Card penalize() {
 		
 	}
 }
