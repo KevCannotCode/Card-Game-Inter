@@ -16,7 +16,8 @@ public class InterGame {
 	
 	/**
 	 * This method starts the game. The deck is initialized and pileCard will hold the 
-	 * initial card of the game
+	 * initial card of the game. if the initial card is a penalty card, then the penalty counter should
+	 * increment.
 	 * @param
 	 * 		none
 	 * @precondition
@@ -67,7 +68,8 @@ public class InterGame {
 	 * @postcontion
 	 * The previous card has been successfully transfered to the deck. pileCard 
 	 * is holding c. To confirm that the card was successfully played, the method 
-	 * displays "player {given player} played a {c} " 
+	 * displays "player {given player} played a {c} ".
+	 * if the player plays a penalty card penalty should increment.
 	 * @throws
 	 * {@link IllegalStateException}: this error occurs if pileCard was null 
 	 * {@link IllegalArgumentException}: this error will occur if c is either null
@@ -97,6 +99,8 @@ public class InterGame {
 	
 	/**
 	 * this method will tells if the next player should be penalized or not.
+	 * if the initial card is a penalty card it should affect the player who wants 
+	 * to play.
 	 * @return
 	 */
 	public boolean isPenalty() {
