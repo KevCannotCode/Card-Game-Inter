@@ -106,12 +106,28 @@ public class InterGame {
 	public boolean isPenalty() {
 		
 	}
+	
+	/**
+	 * this method will tells if the current card is a special card or not.
+	 * @return
+	 */
+	public boolean isSpecial() {
+		
+	}
 	/**
 	 * this method will give the appropriate amount of cards to the player. It will
 	 * pileCard to check how many cards to give. 
 	 * @return
 	 */
 	public Card penalize() {
+		
+	}
+	/**
+	 * this is a helper method for penalize. it will check the type of penalty card 
+	 * and return the appropriate number of cards to give.
+	 * @return
+	 */
+	private int checkCard() {
 		
 	}
 }
