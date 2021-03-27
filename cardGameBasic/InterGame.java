@@ -2,9 +2,12 @@ package cardGameBasic;
 
 public class InterGame {
 	//?? implementation question: what would happen if players must pick a card but the deck runs out of card?
-	
-	Card pileCard;//this variable will hold the card on the top of the pile
-	Deck gameDeck;//a deck of 52 cards. 
+	//We could keep track of the number of cards each player should have picked if the deck has enough cards.
+	//The driver could have a variable that keeps track of how many cards each player should pick once the deck has enough cards.
+	//we could say that the deck is big enough when it has the double of all the cards each player must pick.
+	private int credit;
+	private Card pileCard;//this variable will hold the card on the top of the pile
+	private Deck gameDeck;//a deck of 52 cards. 
 	
 	/**
 	 * The constructor initializes the default variables, no need to write it
@@ -74,11 +77,20 @@ public class InterGame {
 	}
 	
 	/**
-	 * This method will be called when a player needs to pick a new card from the unused card pile. 
-	 * The deck will deal one card to a player. 
-	 * @return
+	 * This method will be called when a player needs to pick a card from the deck. 
+	 * The deck will deal one card and add it to the given player's hand array. 
+	 * @param
+	 * 	p - the player that wants to pick a card
+	 * @precondition
+	 * 	p cannot be null
+	 * @postcondition
+	 * 	if the deck had enough cards (the double of the credit variable ), the player should 
+	 * 	have a new card in the his hand. If the deck did not have enough cards, the player 
+	 * 	will not get a new card in his hand and credit will increment. 
+	 * @throws
+	 * * {@link IllegalArgumentException}: this error will occur if p is null
 	 */
-	public Card pickCard() {
+	public void pickCard(Player p) {
 		
 	}
 }
