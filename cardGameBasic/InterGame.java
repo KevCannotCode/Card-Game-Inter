@@ -5,9 +5,12 @@ public class InterGame {
 	//We could keep track of the number of cards each player should have picked if the deck has enough cards.
 	//The driver could have a variable that keeps track of how many cards each player should pick once the deck has enough cards.
 	//we could say that the deck is big enough when it has the double of all the cards each player must pick.
-	private int credit;
+	
+	private int credit;//when the deck doesn't have enough cards, credit will keep track of how many cards players need to pick. 
 	private int penalty;//this keeps track of the number of penalty cards played by the last player
 	private Card pileCard;//this variable will hold the card on the top of the pile
+	private String cardAsked;//When a player plays an 8, he can ask other players to play a card with a specific rank. 
+	//cardAsked will hold the rank of the card the player asked for.
 	private Deck gameDeck;//a deck of 52 cards. 
 	
 	/**
@@ -55,6 +58,9 @@ public class InterGame {
 	 * This method also maintains the deck filled throughout the game.
 	 * When a player plays a card, this method takes the previous card and 
 	 * transfers it to the deck. 
+	 * 
+	 * If c is a 7, the player should be prompted to play a card with a matching suit accompany the 7
+	 * If c is an 8, the player should 
 	 * @param
 	 * 	c- the card the player wants to play. 
 	 * 	The card we must put inpileCard.
