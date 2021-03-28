@@ -81,7 +81,13 @@ public class Player {
 	}
 	
 	public void clearHand();
-	
+	/**
+	 * checks if the player has any card left in his hand array
+	 * @return false if there is at least one card in the hand array. Otherwise, return true
+	 */
+	public boolean isHandEmpty() {
+		
+	}
 	//may come handy
 	public int getCard(int position);
 	// may come handy
