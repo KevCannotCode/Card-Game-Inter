@@ -18,13 +18,9 @@ public class InterGame {
 	 * This method starts the game. The deck is initialized and pileCard will hold the 
 	 * initial card of the game. if the initial card is a penalty card, then the penalty counter should
 	 * increment.
-	 * @param
-	 * 		none
-	 * @precondition
-	 * 		none	
-	 * @postcondition
-	 * The game object has a deck with 52 unique cards and a card
-	 * in pileCard
+	 * @param: none
+	 * @precondition : none	
+	 * @postcondition: The game object has a deck with 52 unique cards and a card in pileCard
 	 * 
 	 * notes: if we write an invariant then it will check that the deck has 50 cards
 	 * 
@@ -60,11 +56,12 @@ public class InterGame {
 	 * When a player plays a card, this method takes the previous card and 
 	 * transfers it to the deck. 
 	 * @param
-	 * 		c- the card the player wants to play. 
-	 * 		The card we must put inpileCard.
+	 * 	c- the card the player wants to play. 
+	 * 	The card we must put inpileCard.
+	 * 	p- the player who wants to play
 	 * @precondition
-	 * 		c cannot be null
-	 * 		pileCard cannot be null
+	 * 	c cannot be null
+	 * 	pileCard cannot be null
 	 * @postcontion
 	 * The previous card has been successfully transfered to the deck. pileCard 
 	 * is holding c. To confirm that the card was successfully played, the method 
@@ -73,9 +70,9 @@ public class InterGame {
 	 * @throws
 	 * {@link IllegalStateException}: this error occurs if pileCard was null 
 	 * {@link IllegalArgumentException}: this error will occur if c is either null
-	 * or an invalid card 
+	 * or p doesn't have c in his hand. 
 	 */
-	public void playCard(Card c) {
+	public void playCard(Card c, Player p) {
 		
 	}
 	
@@ -88,8 +85,9 @@ public class InterGame {
 	 * 	p cannot be null
 	 * @postcondition
 	 * 	if the deck had enough cards (the double of the credit variable ), the player should 
-	 * 	have a new card in the his hand. If the deck did not have enough cards, the player 
-	 * 	will not get a new card in his hand and credit will increment. 
+	 * 	have a new card in the his hand.
+	 * 	If the deck did not have enough cards, the player will not get a new card in his hand. 
+	 * 	Instead the method will print "Not enough cards in the deck" and credit will increment. 
 	 * @throws
 	 * * {@link IllegalArgumentException}: this error will occur if p is null
 	 */
@@ -99,35 +97,41 @@ public class InterGame {
 	
 	/**
 	 * this method will tells if the next player should be penalized or not.
-	 * if the initial card is a penalty card it should affect the player who wants 
-	 * to play.
+	 * if the initial card on the pile is a penalty card it should affect the player who wants 
+	 * to play. In other words, the player will be penalized if pileCard is a penalty card
 	 * @return
 	 */
 	public boolean isPenalty() {
-		
+		return false;
 	}
-	
 	/**
-	 * this method will tells if the current card is a special card or not.
-	 * @return
+	 * this method draws the appropriate amount of cards from the deck and pass them in the player's hand. 
+	 * It will check pileCard to decide how many cards to give and decrement the variable penalty.
+	 * @param
+	 * 	p - Player to penalize
+	 * @precondition
+	 * 	pileCard must be a penalty card 
+	 * 	penalty must be greater than zero
+	 * @postcondition
+	 * 	THe player received the right amount of cards in his hand. Penalty was successfully decremented
+	 * @throws
+	 * 	IllegalStateException: pileCard's type is not a penalty card or penalty <= 0
+	 * 	{@link IllegalArgumentException}: p is null
+	 */
+	public void penalize(Player p) {
+	}
+	/**
+	 * this method tells if the current card is a special card or not.
+	 * @return true if pileCard's type is a special card (either a rank 8 or 7 )
 	 */
 	public boolean isSpecial() {
-		
+		return false;
 	}
 	/**
-	 * this method will give the appropriate amount of cards to the player. It will
-	 * pileCard to check how many cards to give. 
-	 * @return
+	 * this method is called when pileCard is a special card. There are two possibilities
+	 * Either pileCard is an 8
 	 */
-	public Card penalize() {
-		
-	}
-	/**
-	 * this is a helper method for penalize. it will check the type of penalty card 
-	 * and return the appropriate number of cards to give.
-	 * @return
-	 */
-	private int checkCard() {
+	public void playSpecialCard() {
 		
 	}
 }
