@@ -20,12 +20,13 @@ public class InterGame {
 	/**
 	 * This method starts the game. The deck is initialized and pileCard will hold the 
 	 * initial card of the game. if the initial card is a penalty card, then the penalty counter should
-	 * increment.
+	 * increments.
 	 * @param: none
 	 * @precondition : none	
-	 * @postcondition: The game object has a deck with 52 unique cards and a card in pileCard
+	 * @postcondition: The game object has a deck with 41 (since one is in the pile and 10 are distributed to players) 
+	 * unique cards and a card in pileCard
 	 * 
-	 * notes: if we write an invariant then it will check that the deck has 50 cards
+	 * notes: if we write an invariant then it will check that the deck has 41 cards
 	 * 
 	 */ 
 	public void start() {
@@ -60,7 +61,7 @@ public class InterGame {
 	 * transfers it to the deck. 
 	 * 
 	 * If c is a 7, the player should be prompted to play a card with a matching suit accompany the 7
-	 * If c is an 8, the player should 
+	 * If c is an 8, the player should select a card that other players must play.
 	 * @param
 	 * 	c- the card the player wants to play. 
 	 * 	The card we must put inpileCard.
@@ -79,7 +80,12 @@ public class InterGame {
 	 * or p doesn't have c in his hand. 
 	 */
 	public void playCard(Card c, Player p) {
+		//we could prompt the player to play a card in this method that way we don't need c.
 		
+		//isAnEight()
+		//isASeven()
+		//isAJoker()
+		//isPenalty()
 	}
 	
 	/**
@@ -103,9 +109,9 @@ public class InterGame {
 	
 	/**
 	 * this method will tells if the next player should be penalized or not.
-	 * if the initial card on the pile is a penalty card it should affect the player who wants 
+	 * if the initial card on the pile is a penalty card and penalty is > 0 it should affect the player who wants 
 	 * to play. In other words, the player will be penalized if pileCard is a penalty card
-	 * @return
+	 * @return true if pileCard's type is a penalty card and penalty > 0
 	 */
 	public boolean isPenalty() {
 		return false;
@@ -127,17 +133,16 @@ public class InterGame {
 	public void penalize(Player p) {
 	}
 	/**
-	 * this method tells if the current card is a special card or not.
-	 * @return true if pileCard's type is a special card (either a rank 8 or 7 )
+	 * this method tells if the current card is an eight.
+	 * @return true if pileCard's type is an eight
 	 */
-	public boolean isSpecial() {
+	public boolean isAnEight() {
 		return false;
 	}
 	/**
-	 * this method is called when pileCard is a special card. There are two possibilities
-	 * Either pileCard is an 8
+	 * this method is called when pileCard has an eight. THe player must play either a joker or a card with
+	 * the same rank as askedCard.
 	 */
-	public void playSpecialCard() {
-		
+	private Card playTheCardAsked() {
 	}
 }
