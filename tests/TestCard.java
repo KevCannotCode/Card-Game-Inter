@@ -8,22 +8,9 @@ import org.junit.jupiter.api.Test;
 import cardGameBasic.Card;
 
 class TestCard {
-	//deck containing 52 valid cards in order and 2 Jokers starting from
-	Card[] orderedDeck;
 	Card cardTest;
 	protected void setUp(){
 		cardTest = new Card("Ace", "Spade");
-		
-		String []ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-				"Jack", "Queen", "King"};
-		String []suits = {"Heart", "Diamond", "Spade","Club"};
-		orderedDeck = new Card[54];
-		for(int i = 0; i < 52; i++) {
-			Card card = new Card(ranks[i % 13], suits[i % 4]);
-			orderedDeck[i] = card; 
-		}
-		orderedDeck[52] = new Card("Joker", "Joker");
-		orderedDeck[52] = new Card("Joker", "Joker");
 	}
 
 	@Test
@@ -136,8 +123,7 @@ class TestCard {
 	
 	//test display
 	public void testDisplay() {
-		//this should be an ace of Heart
-		assertEquals("This is a Ace of Heart", orderedDeck[0].toString());
+		assertEquals("This is a Ace of Heart", cardTest.toString());
 	}
 	
 }
