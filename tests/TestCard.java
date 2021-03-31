@@ -98,16 +98,19 @@ class TestCard {
 		assertEquals("5", cardTest.getRank());
 		assertEquals("Diamond", cardTest.getSuit());
 		assertEquals("Normal", cardTest.getType());
+		assertFalse(cardTest.getType() == null);
 		
 		cardTest = new Card("10", "Heart");
 		assertEquals("10", cardTest.getRank());
 		assertEquals("Heart", cardTest.getSuit());
 		assertEquals("Penalty", cardTest.getType());
+		assertFalse(cardTest.getType() == null);
 		
 		cardTest = new Card("7", "Club");
 		assertEquals("7", cardTest.getRank());
 		assertEquals("Club", cardTest.getSuit());
 		assertEquals("Special", cardTest.getType());
+		assertFalse(cardTest.getType() == null);
 	}
 	
 	public void testIsPenaltyCard() {
