@@ -1,42 +1,35 @@
 package tests;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cardGameBasic.Card;
 
 class TestCard {
-	Card cardTest;
-	protected void setUp(){
-		cardTest = new Card("Ace", "Spade");
-	}
-
+	private Card cardTest;
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
 	//test constructor
-	public void testConstructorInvalidArguments() {
+	void testConstructorInvalidArguments() {
 
 		boolean correct = true;
 		try {
 			//null arguments 
-			Card card = new Card(null, null);
+
+			//invalid order
+			Card card = new Card("King", "Heart");
+			//invalid rank for joker
+			card = new Card("Joker", "Heart");
+			
+			card = new Card(null, null);
 			card = new Card(null, "Spade");
 			card = new Card("Spade", null);
 
-			//invalid ranks and suits
+//			//invalid ranks and suits
 			card = new Card("tomatoe", "soap");
 			card = new Card("Tomatoe", "Spade");
 			card = new Card("King", "lol");
 
-			//invalid order
-			card = new Card("Heart", "King");
-			//invalid rank for joker
-			card = new Card("Joker", "Heart");
 		}catch (Exception e) {
 			if(! (e instanceof IllegalArgumentException) )
 				correct = false;
@@ -45,85 +38,94 @@ class TestCard {
 		assertTrue(correct);
 	}
 
-	public void testConstructorValidArgument() {
+	@Test
+	void testConstructorValidArgument() {
 		boolean correct = true;
 
 		try {
-			Card card = new Card("King", "Heart");
-			card = new Card("Queen", "Spade");
-			card = new Card("Ace", "Club");
-			card = new Card("Jack","Diamond");
+			Card card = new Card("Heart", "King");
+			card = new Card("Spade", "Queen");
+			card = new Card("Club", "Ace");
+			card = new Card("Diamond","Jack");
 			card = new Card("Joker", "Joker");
-		}catch(Exception e) {
+		}catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 			correct = false;
 		}
 		assertTrue(correct);
-		Card card = new Card("Queen", "Diamond");
+		Card card = new Card("Diamond", "Queen");
 		assertEquals("Diamond", card.getSuit());
 		assertEquals("Queen", card.getRank());
 	}
 
-	public void testConstructorNumericRanks() {
+	@Test
+	void testConstructorNumericRanks() {
 		//the ranks and suits will be defined as String constants 
-		Card card = new Card("1", "Heart");
-		assertEquals("1", card.getRank());
+		Card card = new Card("Heart", "2");
+		assertEquals("2", card.getRank());
 		boolean correct = true;
 		try {
-			card = new Card("One", "Heart");
-			card = new Card("11", "Heart");
+			card = new Card("Heart", "One");
+			card = new Card("Heart", "11");
 		}catch(Exception e) {
-			if(! (e instanceof IllegalArgumentException) )
+			if(! (e instanceof IllegalArgumentException) ) {
 				correct = false;
+				assertEquals("invalid suit in the card constructor", e.getMessage());
+			}
 		}
 		assertTrue(correct);
 	}
 	
+	@Test
 	//test getters
 	public void testGetters() {
 		//Normal type
-		cardTest = new Card("5", "Diamond");
+		cardTest = new Card("Diamond", "5");
 		assertEquals("5", cardTest.getRank());
 		assertEquals("Diamond", cardTest.getSuit());
 		assertEquals("Normal", cardTest.getType());
 		assertFalse(cardTest.getType() == null);
 		
-		cardTest = new Card("10", "Heart");
+		cardTest = new Card("Heart", "10");
 		assertEquals("10", cardTest.getRank());
 		assertEquals("Heart", cardTest.getSuit());
 		assertEquals("Penalty", cardTest.getType());
 		assertFalse(cardTest.getType() == null);
 		
-		cardTest = new Card("7", "Club");
+		cardTest = new Card("Club", "7");
 		assertEquals("7", cardTest.getRank());
 		assertEquals("Club", cardTest.getSuit());
 		assertEquals("Special", cardTest.getType());
 		assertFalse(cardTest.getType() == null);
 	}
 	
-	public void testIsPenaltyCard() {
-		cardTest = new Card("5", "Diamond");
+	@Test
+	void testIsPenaltyCard() {
+		cardTest = new Card("Diamond", "5");
 		assertFalse(cardTest.isPenaltyCard() );
 		cardTest = new Card("Joker", "Joker");
 		assertTrue(cardTest.isPenaltyCard() );
 	}
 
-	public void testIsNormalCard() {
-		cardTest = new Card("5", "Diamond");
-		assertTrue(cardTest.isNormalCard() );
-		cardTest = new Card("Joker", "Joker");
+	@Test
+	void testIsNormalCard() {
+		cardTest = new Card("Diamond", "5");
 		assertTrue(cardTest.isNormalCard() );
 	}
 
-	public void testIsSpecialCard() {
-		cardTest = new Card("5", "Diamond");
+	@Test
+	void testIsSpecialCard() {
+		cardTest = new Card("Diamond", "5");
 		assertFalse(cardTest.isSpecialCard() );
-		cardTest = new Card("8", "Heart");
+		cardTest = new Card("Heart", "8");
 		assertTrue(cardTest.isSpecialCard() );
 	}
 	
+	@Test
 	//test display
-	public void testDisplay() {
-		assertEquals("This is a Ace of Heart", cardTest.toString());
+	void testPrinting() {
+		Card cardTest = new Card("Spade", "Ace");
+		assertEquals("Ace of Spade", cardTest.toString());
 	}
 	
 }
