@@ -107,5 +107,19 @@ public class Card {
 	public String toString() {
 		return this.rank+ " of "+this.suit;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if(this == obj)
+			return true;
+		if(!(obj instanceof Card) )
+			return false;
+		Card c = (Card) obj;
+		if(this.rank.equals(c.rank) && this.suit.equals(c.suit) 
+				&& this.type.equals(c.type))
+			return true;
+		return false;
+	}
 }
