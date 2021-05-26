@@ -1,9 +1,10 @@
 package cardGameBasic;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 //read and copied method heades from math.hws.edu/javanotes/c5/s4.html
 public class Player {
-	Card [] hand;
+	ArrayList<Card> hand;
 	//??IMplementation problem:
 	//should we put it in a game manager class ?
 	boolean win;
@@ -11,8 +12,17 @@ public class Player {
 	//maybe i should write this in the game itself
 	boolean pause;
 	int INITIALCARDS = 5;
-	public Player() {
-		hand = new Card[INITIALCARDS];
+	/**
+	 * takes in a deck and picks 5 cards from that deck
+	 * @param
+	 *		d - deck that will deal 5 cards to this players hand
+	 *@precondition
+	 *		d must have more than 5 cards
+	 *		d must not be null
+	 *@throws
+	 *		IllegalArgumentException: this error will occur if d is null
+	 */
+	public Player(Deck d) {
 	}
 	/**
 	This method will display all the cards in the hand of this player
@@ -31,14 +41,17 @@ public class Player {
 	
 	/**
 	the player will call this method to play a card. It will remove a given card from 
-	the player's hand
+	the player's hand. If the player has other matching cards this method will ask 
+	the player if he wishes to play another card
 	@param
 		c - the card the player wishes to play
 	@precondition
 		hand cannot be empty
 		c must be a card in hand
 	@postcondition
-	 	the card c should be removed from the hand 
+	 	the card c should be removed from the hand. This mehod either returns c or if the
+	 	player played multiple cards it will return the last card he played. If the player
+	 	didn't have a card to play this method returns null.
 	@throws
 		NoSuchElementException: this error will occur when the hand was empty
 		{@link IllegalArgumentException}: this error will occur if c is not in hand
@@ -46,25 +59,26 @@ public class Player {
 	public Card playACard(Card c) {
 		return null;
 	}
-	/**
-	the player will call this method to play multiple cards. It will remove some cards from 
-	the player's hand.
 	
-	??Implementation question: In the real game the order matters, but I am not sure if its necessary. 
-	@param
-		cardSequence - the array that contains a sequence of cards to play card the player wishes to play. 
-	@precondition
-		hand cannot be empty
-		c must be a card in hand
-	@postcondition
-	 	the card c should be removed from the hand 
-	@throws
-		NoSuchElementException: this error will occur when the hand was empty
-		{@link IllegalArgumentException}: this error will occur if at least one card in cardSequence is not in hand
-	**/
-	public Card playACard(Card cardSequence []) {
-		return null;
-	}
+//	/**
+//	the player will call this method to play multiple cards. It will remove some cards from 
+//	the player's hand.
+//?????Implementation question: In the real game the order matters, but I am not sure if its necessary. 
+//	@param
+//		cardSequence - the array that contains a sequence of cards to play card the player wishes to play. 
+//	@precondition
+//		hand cannot be empty
+//		c must be a card in hand
+//	@postcondition
+//	 	the card c should be removed from the hand 
+//	@throws
+//		NoSuchElementException: this error will occur when the hand was empty
+//		{@link IllegalArgumentException}: this error will occur if at least one card in cardSequence is not in hand
+//	**/
+//	
+//	public Card playACard(Card cardSequence []) {
+//		return null;
+//	}
 	
 	/**
 	returns the number of cards a player has
@@ -89,8 +103,13 @@ public class Player {
 		
 	}
 	//may come handy
-	public int getCard(int position);
+	public Card getCard(int position);
 	// may come handy
+	//sort by suit/ alphabetically
 	public void sortBySuit();
 	public void sortByValue();
+	//this will give a card to this player
+	public void drawACard(Deck d) {
+		
+	}
 }
