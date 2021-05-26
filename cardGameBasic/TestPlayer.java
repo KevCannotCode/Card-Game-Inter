@@ -11,16 +11,14 @@ class TestPlayer {
 	Player p;
 	final int NUMBER_OF_CARD = 5;
 	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
 	void test_construtor() {
 		p = new Player(new Deck() );
-		for(int i = 0; i < NUMBER_OF_CARD; i++) 
-			assertTrue(p.hand.get(i) != null && p.hand.get(i) instanceof Card);
+		for(int i = 0; i < NUMBER_OF_CARD; i++) { 
+			assertTrue(p.hand.get(i) != null);
+			assertTrue(p.hand.get(i) instanceof Card);
+		}
 	}
-
+	@Test
 	void test_play_the_same_card() {
 		Deck d = new Deck();
 		p = new Player(d);
@@ -42,7 +40,7 @@ class TestPlayer {
 		assertEquals(new Card("Heart", "6") , p.hand.get(2) );
 		assertEquals(new Card("Heart", "7") , p.hand.get(3) );
 	}
-	
+	@Test
 	void test_play_1card_of_same_suit() {
 		Deck d = new Deck();
 		p = new Player(d);
@@ -64,7 +62,7 @@ class TestPlayer {
 		assertEquals(new Card("Heart", "5") , p.hand.get(2) );
 		assertEquals(new Card("Heart", "6") , p.hand.get(3) );
 	}
-	
+	@Test
 	void test_play_1card_of_same_rank() {
 		Deck d = new Deck();
 		p = new Player(d);
@@ -82,7 +80,7 @@ class TestPlayer {
 		assertEquals(4, p.hand.size());
 		assertFalse(p.hand.contains(new Card("Heart", "3")) );
 	}
-	
+	@Test
 	void test_play_multiple_cards() {
 		//play a card that matches the suit of the card on the top of the pile
 		//and other cards that match the first card the player played
@@ -128,7 +126,7 @@ class TestPlayer {
 		assertFalse(p.hand.contains(new Card("Spade", "9")) );
 		assertFalse(p.hand.contains(new Card("Heart", "9")) );
 	}
-	
+	@Test
 	void test_no_card_to_play() {
 		//play a card that matches the rank of the card on the top of the pile
 		//and other cards that match the first card the player played
@@ -157,13 +155,7 @@ class TestPlayer {
 		assertTrue(p.hand.contains(new Card("Club", "8")) );
 		assertTrue(p.hand.contains(new Card("Diamond", "4")) );
 	}
-	
-	void test_play_wrong_card() {
-		Deck d = new Deck();
-		p = new Player(d);
-		//manually set the hand
-	}
-	
+	@Test
 	void test_number_of_cards() {
 		Deck d = new Deck();
 		p = new Player(d);
@@ -176,21 +168,21 @@ class TestPlayer {
 			assertEquals(p.hand.size() , p.numberOfCards());
 		}
 	}
-	
+	@Test
 	void test_clearHand() {
 		Deck d = new Deck();
 		p = new Player(d);
 		p.clearHand();
 		assertEquals(0, p.numberOfCards());
 	}
-	
+	@Test
 	void test_isEmpty() {
 		Deck d = new Deck();
 		p = new Player(d);
 		p.clearHand();
 		assertTrue(p.isHandEmpty());
 	}
-	
+	@Test
 	void test_sortByValue() {
 		Deck d = new Deck();
 		p = new Player(d);
@@ -210,7 +202,7 @@ class TestPlayer {
 		assertEquals( p.getCard(3), new Card("Club", "Queen") );
 		assertEquals( p.getCard(4), new Card("Club", "King") );
 	}
-	
+	@Test
 	void test_sortBySuit() {
 		Deck d = new Deck();
 		p = new Player(d);

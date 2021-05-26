@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;
 
 public class Deck {
+	int cardNumber;
 	protected Card [] deck;
 	public String [] RANKS = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 			"Jack", "Queen", "King"};
@@ -25,6 +26,8 @@ public class Deck {
 
 	public Deck() {
 		this.deck = new Card[NUMBER_OF_CARDS];
+		cardNumber = NUMBER_OF_CARDS;
+		initDeck();
 	}
 	/**
 	After creating the Deck, this method will initialize
@@ -61,6 +64,7 @@ public class Deck {
 	 **/
 	public void clearDeck() {
 		deck = new Card[NUMBER_OF_CARDS];
+		cardNumber = 0;
 	}
 
 	/**
@@ -108,7 +112,7 @@ public class Deck {
 		}while (deck[index] == null);
 
 		deck[index] = null;
-
+		cardNumber--;
 		return card;
 	}
 
@@ -120,6 +124,10 @@ public class Deck {
 		}
 
 		return true;
+	}
+	
+	public int cardNumber() {
+		return cardNumber;
 	}
 }
 

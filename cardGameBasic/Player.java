@@ -5,9 +5,6 @@ import java.util.NoSuchElementException;
 //read and copied method heades from math.hws.edu/javanotes/c5/s4.html
 public class Player {
 	ArrayList<Card> hand;
-	//??IMplementation problem:
-	//should we put it in a game manager class ?
-	boolean win;
 	//THis boolean will let us know when a player is paused
 	//maybe i should write this in the game itself
 	boolean pause;
@@ -23,6 +20,16 @@ public class Player {
 	 *		IllegalArgumentException: this error will occur if d is null
 	 */
 	public Player(Deck d) {
+		if(d == null) throw new IllegalArgumentException("The deck that was passed in the player "
+				+ "constructor was empty");
+		if(d.cardNumber() < 5) throw new IllegalArgumentException("The deck that was passed in the player"
+				+ "constructor had less than 5 cards");
+		hand = new ArrayList<Card>();
+		int count = INITIALCARDS;
+		while(count > 0) {
+			hand.add(d.dealCard());
+			count--;
+		}
 	}
 	/**
 	This method will display all the cards in the hand of this player
@@ -57,6 +64,9 @@ public class Player {
 		{@link IllegalArgumentException}: this error will occur if c is not in hand
 	**/
 	public Card playACard(Card c) {
+		if(hand.isEmpty()) throw new IllegalArgumentException("The hand was empty in PLayACard");
+		if(c == null) throw new NoSuchElementException("In playACard the card argument was null");
+		
 		return null;
 	}
 	
