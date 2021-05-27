@@ -18,8 +18,9 @@ class TestPlayer {
 			assertTrue(p.hand.get(i) instanceof Card);
 		}
 	}
+	
 	@Test
-	void test_play_the_same_card() {
+	void test_getCard() {
 		Deck d = new Deck();
 		p = new Player(d);
 		//manually set the hand
@@ -29,16 +30,31 @@ class TestPlayer {
 		p.hand.add(new Card("Heart", "5") );
 		p.hand.add(new Card("Heart", "6") );
 		p.hand.add(new Card("Heart", "7") );
+		
+		Card c = p.hand.get(0);
+		assertEquals(c, p.getCard(0));
+	}
+	@Test
+	void test_play_the_same_card() {
+		Deck d = new Deck();
+		p = new Player(d);
+		//manually set the hand
+		p.hand = new ArrayList<Card>();
+		p.hand.add(new Card("Heart", "3") );
+		p.hand.add(new Card("Club", "4") );
+		p.hand.add(new Card("Club", "5") );
+		p.hand.add(new Card("Club", "6") );
+		p.hand.add(new Card("Club", "7") );
 		//set the card on top of the pile
 		Card c = new Card("Heart", "3");
 		assertEquals(p.hand.get(0), p.playACard(c));
 		//checking the cards that were removed
 		assertFalse(p.hand.contains(new Card("Heart", "3")) );
 		assertEquals(4 , p.hand.size());
-		assertEquals(new Card("Heart", "4") , p.hand.get(0) );
-		assertEquals(new Card("Heart", "5") , p.hand.get(1) );
-		assertEquals(new Card("Heart", "6") , p.hand.get(2) );
-		assertEquals(new Card("Heart", "7") , p.hand.get(3) );
+		assertEquals(new Card("Club", "4") , p.hand.get(0) );
+		assertEquals(new Card("Club", "5") , p.hand.get(1) );
+		assertEquals(new Card("Club", "6") , p.hand.get(2) );
+		assertEquals(new Card("Club", "7") , p.hand.get(3) );
 	}
 	@Test
 	void test_play_1card_of_same_suit() {
@@ -46,7 +62,7 @@ class TestPlayer {
 		p = new Player(d);
 		//manually set the hand
 		p.hand = new ArrayList<Card>();
-		p.hand.add(new Card("Heart", "3") );
+		p.hand.add(new Card("Heart", "8") );
 		p.hand.add(new Card("Heart", "4") );
 		p.hand.add(new Card("Heart", "5") );
 		p.hand.add(new Card("Heart", "6") );
@@ -57,7 +73,7 @@ class TestPlayer {
 		//checking the cards that were removed
 		assertEquals(4, p.hand.size());
 		assertFalse(p.hand.contains(new Card("Spade", "7")) );
-		assertEquals(new Card("Heart", "3") , p.hand.get(0) );
+		assertEquals(new Card("Heart", "8") , p.hand.get(0) );
 		assertEquals(new Card("Heart", "4") , p.hand.get(1) );
 		assertEquals(new Card("Heart", "5") , p.hand.get(2) );
 		assertEquals(new Card("Heart", "6") , p.hand.get(3) );
@@ -69,10 +85,10 @@ class TestPlayer {
 		//manually set the hand
 		p.hand = new ArrayList<Card>();
 		p.hand.add(new Card("Heart", "3") );
-		p.hand.add(new Card("Heart", "4") );
-		p.hand.add(new Card("Heart", "5") );
-		p.hand.add(new Card("Heart", "6") );
-		p.hand.add(new Card("Heart", "7") );
+		p.hand.add(new Card("Club", "4") );
+		p.hand.add(new Card("Club", "5") );
+		p.hand.add(new Card("Club", "6") );
+		p.hand.add(new Card("Club", "7") );
 		//set the card on top of the pile
 		Card c = new Card("Spade", "3");
 		assertEquals(p.hand.get(0), p.playACard(c));
@@ -91,13 +107,12 @@ class TestPlayer {
 		p.hand.add(new Card("Heart", "9") );
 		p.hand.add(new Card("Diamond", "9") );
 		p.hand.add(new Card("Spade", "9") );
-		p.hand.add(new Card("Club", "9") );
+		p.hand.add(new Card("Club", "8") );
 		p.hand.add(new Card("Heart", "4") );
 		//set the card on top of the pile
 		Card c = new Card("Diamond", "3");
-		System.out.println("Play the 9 of Diamond first and then of Spade, then of diamond,"
-				+ "then a Heart");
-		assertEquals(p.hand.get(0), p.playACard(c));
+		System.out.println("Play the 4 of hearts last");
+		assertEquals(p.hand.get(4), p.playACard(c));
 		//checking the cards that were removed
 		assertEquals(1, p.hand.size());
 		assertFalse(p.hand.contains(new Card("Diamond", "9")) );
@@ -119,7 +134,8 @@ class TestPlayer {
 		c = new Card("Club", "9");
 		System.out.println("Play the 9 of Diamond first and then of Spade,"
 				+ "then a Heart");
-		assertEquals(p.hand.get(0) , p.playACard(c));
+		Card c2 = p.hand.get(2) ;
+		assertEquals( c2 , p.playACard(c));
 		//checking the cards that were removed
 		assertEquals(2, p.hand.size());
 		assertFalse(p.hand.contains(new Card("Diamond", "9")) );
@@ -136,7 +152,7 @@ class TestPlayer {
 		p.hand = new ArrayList<Card>();
 		p.hand.add(new Card("Heart", "9") );
 		p.hand.add(new Card("Diamond", "9") );
-		p.hand.add(new Card("Spade", "9") );
+		p.hand.add(new Card("Club", "9") );
 		p.hand.add(new Card("Club", "8") );
 		p.hand.add(new Card("Diamond", "4") );
 		//set the card on top of the pile
@@ -151,7 +167,7 @@ class TestPlayer {
 		assertEquals(6, p.hand.size());
 		assertTrue(p.hand.contains(new Card("Heart", "9")) );
 		assertTrue(p.hand.contains(new Card("Diamond", "9")) );
-		assertTrue(p.hand.contains(new Card("Spade", "9")) );
+		assertTrue(p.hand.contains(new Card("Club", "9")) );
 		assertTrue(p.hand.contains(new Card("Club", "8")) );
 		assertTrue(p.hand.contains(new Card("Diamond", "4")) );
 	}
@@ -164,7 +180,7 @@ class TestPlayer {
 		assertEquals(p.hand.size() , p.numberOfCards());
 		//play all cards
 		while(p.numberOfCards() > 0) {
-			p.getCard(NUMBER_OF_CARD-1);
+			p.getCard(p.numberOfCards()-1);
 			assertEquals(p.hand.size() , p.numberOfCards());
 		}
 	}
@@ -182,44 +198,44 @@ class TestPlayer {
 		p.clearHand();
 		assertTrue(p.isHandEmpty());
 	}
-	@Test
-	void test_sortByValue() {
-		Deck d = new Deck();
-		p = new Player(d);
-		//manually set the hand
-		p.hand = new ArrayList<Card>();
-		p.hand.add(new Card("Club", "10") );
-		p.hand.add(new Card("Club", "Jack") );
-		p.hand.add(new Card("Club", "King") );
-		p.hand.add(new Card("Club", "Queen") );
-		p.hand.add(new Card("Club", "Ace") );
-		
-		p.sortByValue();
-		
-		assertEquals( p.getCard(0), new Card("Club", "Ace") );
-		assertEquals( p.getCard(1), new Card("Club", "10") );
-		assertEquals( p.getCard(2), new Card("Club", "Jack") );
-		assertEquals( p.getCard(3), new Card("Club", "Queen") );
-		assertEquals( p.getCard(4), new Card("Club", "King") );
-	}
-	@Test
-	void test_sortBySuit() {
-		Deck d = new Deck();
-		p = new Player(d);
-		//manually set the hand
-		p.hand = new ArrayList<Card>();
-		p.hand.add(new Card("Club", "10") );
-		p.hand.add(new Card("Spade", "Jack") );
-		p.hand.add(new Card("Diamond", "King") );
-		p.hand.add(new Card("Heart", "Queen") );
-		p.hand.add(new Card("Club", "Ace") );
-		
-		p.sortBySuit();
-		
-		assertEquals( p.getCard(0), new Card("Club", "10") );
-		assertEquals( p.getCard(1), new Card("Club", "Ace") );
-		assertEquals( p.getCard(2), new Card("Diamond", "King") );
-		assertEquals( p.getCard(3), new Card("Heart", "Queen") );
-		assertEquals( p.getCard(4), new Card("Spade", "Jack") );
-	}
+//	@Test
+//	void test_sortByValue() {
+//		Deck d = new Deck();
+//		p = new Player(d);
+//		//manually set the hand
+//		p.hand = new ArrayList<Card>();
+//		p.hand.add(new Card("Club", "10") );
+//		p.hand.add(new Card("Club", "Jack") );
+//		p.hand.add(new Card("Club", "King") );
+//		p.hand.add(new Card("Club", "Queen") );
+//		p.hand.add(new Card("Club", "Ace") );
+//		
+//		p.sortByValue();
+//		
+//		assertEquals( p.getCard(0), new Card("Club", "Ace") );
+//		assertEquals( p.getCard(1), new Card("Club", "10") );
+//		assertEquals( p.getCard(2), new Card("Club", "Jack") );
+//		assertEquals( p.getCard(3), new Card("Club", "Queen") );
+//		assertEquals( p.getCard(4), new Card("Club", "King") );
+//	}
+//	@Test
+//	void test_sortBySuit() {
+//		Deck d = new Deck();
+//		p = new Player(d);
+//		//manually set the hand
+//		p.hand = new ArrayList<Card>();
+//		p.hand.add(new Card("Club", "10") );
+//		p.hand.add(new Card("Spade", "Jack") );
+//		p.hand.add(new Card("Diamond", "King") );
+//		p.hand.add(new Card("Heart", "Queen") );
+//		p.hand.add(new Card("Club", "Ace") );
+//		
+//		p.sortBySuit();
+//		
+//		assertEquals( p.getCard(0), new Card("Club", "10") );
+//		assertEquals( p.getCard(1), new Card("Club", "Ace") );
+//		assertEquals( p.getCard(2), new Card("Diamond", "King") );
+//		assertEquals( p.getCard(3), new Card("Heart", "Queen") );
+//		assertEquals( p.getCard(4), new Card("Spade", "Jack") );
+//	}
 }
